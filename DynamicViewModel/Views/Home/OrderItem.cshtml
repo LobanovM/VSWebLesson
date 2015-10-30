@@ -1,0 +1,25 @@
+﻿@model KeyValuePair<string, DynamicViewModel.Models.Item>
+
+<div class="ItemWrapper">
+    <div class="btn remove-line">Удалить</div>
+
+    <div class="control-group">
+        <label class="control-label">
+            ИД
+        </label>
+        <div class="controls">
+            @Html.TextBox("Items[" + Model.Key + "].Id", Model.Value.Id, new { @class = "input-xlarge" })
+            @Html.ValidationMessage("Items[" + Model.Key + "].Id")
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">
+            Имя
+        </label>
+        <div class="controls">
+            @Html.TextBox("Items[" + Model.Key + "].Name", Model.Value.Name, new { @class = "input-xlarge" })
+            @Html.ValidationMessage("Items[" + Model.Key + "].Name")
+        </div>
+    </div>
+</div>
+

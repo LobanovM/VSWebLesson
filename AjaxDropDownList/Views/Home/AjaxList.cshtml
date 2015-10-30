@@ -1,0 +1,69 @@
+﻿@model AjaxDropDownList.Models.ViewModel
+
+@{
+    ViewBag.Title = "AjaxList";
+}
+
+<h2>AjaxList</h2>
+
+<!--
+<script type="text/javascript">
+    function MyFunc() {
+        $.getJSON('/Home/LoadItems', function (result) {
+            var ddl = $('#ajax');
+            ddl.empty();
+            $(result).each(function () {
+                $(document.createElement('option'))
+                    .attr('value', this.Id)
+                    .text(this.Value)
+                    .appendTo(ddl);
+            });
+        });
+    }
+</script>
+
+@Html.DropDownListFor(m => m.Id, Enumerable.Empty<SelectListItem>(), "-- Загрузка изделий --", new { id = "ajaxList" })
+ <button class="Button" id="ButtonA" onclick="javascript: MyFunc();">
+    CaptionA
+</button>
+
+-->
+
+@using (Html.BeginForm()) { 
+    @Html.DropDownListFor(m => m.Id, Enumerable.Empty<SelectListItem>(), "-- Загрузка изделий --", new { id = "ajaxList" })
+
+    @Ajax.ActionLink("text", "LoadItems", new AjaxOptions
+                            {
+                                UpdateTargetId = "ajaxList",
+                                InsertionMode = InsertionMode.Replace
+                            });
+    <!--
+     <button class="Button" id="ButtonA" onclick="javascript: MyFunc();">
+        CaptionA
+    </button>
+        -->
+
+    <input type="submit" value="Save" class="btn btn-primary" />
+}
+
+<script type="text/javascript">
+    function MyFunc() {
+
+        $.ajax({
+            url: '/Home/CountryList',
+            type: 'POST',
+            dataType: 'json',
+            success: function (data) {
+
+                var options = $('#ajaxList');
+ 
+                $.each(data, function () {
+                    options.append($('<option />').val(this.Key).text(this.Value));
+                });
+            }
+        });
+    }
+</script>
+
+
+

@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "TreeGrid";
+}
+
+<h2>TreeGrid</h2>
+
+<link rel="stylesheet" href="~/Content/demo/jquery.treegrid.css">
+
+<script type="text/javascript" src="~/Scripts/demo/jquery.treegrid.min.js"></script>
+<script type="text/javascript" src="~/Scripts/demo/jquery.treegrid.bootstrap3.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.tree').treegrid();
+    });
+</script>
+
+<div class="panel panel-primary">
+
+    <div class="panel-heading">
+        Заголовок
+    </div>
+
+    <table class="table table-bordered tree">
+        <thead>
+            <tr>
+                <th>1</th>
+                <th>2</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="treegrid-1">
+                <td>Root node</td>
+                <td>Additional info</td>
+            </tr>
+            <tr class="treegrid-2 treegrid-parent-1">
+                <td>Node 1-1</td>
+                <td>Additional info</td>
+            </tr>
+            <tr class="treegrid-3 treegrid-parent-1">
+                <td>Node 1-2</td>
+                <td>Additional info</td>
+            </tr>
+            <tr class="treegrid-4 treegrid-parent-3">
+                <td>Node 1-2-1</td>
+                <td>Additional info</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="panel-footer">
+        ИТОГО:
+    </div>
+
+</div>
+

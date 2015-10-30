@@ -1,0 +1,40 @@
+﻿@model DynamicViewModel.Models.Order
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+@section scripts {
+    @Scripts.Render("~/Scripts/order-edit.js")
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm("Edit", "Home", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <fieldset>
+        <div class="control-group">
+            <label class="control-label" for="Email">
+                Name
+            </label>
+            <div class="controls">
+                @Html.TextBoxFor(m => m.Name, new { @class = "input-xlarge" })
+                @Html.ValidationMessage("Name")
+            </div>
+        </div>
+        <div id="ItemListWrapper">
+            <div class="btn" id="AddItem" myItemName="My Item Name" myItemId="12345">Добавить</div>
+            @foreach (var keyValuePair in Model.Items)
+            {
+                @Html.Partial("OrderItem", keyValuePair)
+            }
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Ок
+            </button>
+        </div>
+    </fieldset>
+}
+
