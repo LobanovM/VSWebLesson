@@ -13,6 +13,22 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $('.tree').treegrid();
+
+        // Перестраиваем дерево
+        var rootNodes = $('.tree').treegrid('getRootNodes');
+        $(rootNodes).each(function () {
+            RebuildTreeView(this);
+
+            function RebuildTreeView(node) {
+                childNodes = $(node).treegrid('getChildNodes');
+                if ($(childNodes).length > 0) {
+                    $(node).after(childNodes);
+                    $(childNodes).each(function () {
+                        RebuildTreeView(this);
+                    });
+                }
+            }
+        });
     });
 </script>
 
@@ -44,6 +60,15 @@
             </tr>
             <tr class="treegrid-4 treegrid-parent-3">
                 <td>Node 1-2-1</td>
+                <td>Additional info</td>
+            </tr>
+
+            <tr class="treegrid-5 treegrid-parent-1">
+                <td>Node 1-2-1</td>
+                <td>Additional info</td>
+            </tr>
+            <tr class="treegrid-6 treegrid-parent-2">
+                <td>Node 1-1-1</td>
                 <td>Additional info</td>
             </tr>
         </tbody>
